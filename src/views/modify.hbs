@@ -1,0 +1,43 @@
+<div class="container">
+<body>
+  <div class="container mt-5">
+    <h1>Nodejs Mongodb CRUD Modify Data</h1>
+
+
+    <form action="/fruits/add" method="POST">
+      <div>
+
+        
+        <input type="text" name="name" placeholder="Enter_name" id="name">
+        <input type="text" name="value" placeholder="Enter_value" id="value">
+        <button id="Add">Save fruit and Value</button> 
+      
+      </div>
+
+    </form>
+
+    <ul>
+      {{#each fruits}}
+      <li>{{name}} - $ {{value}}</li>
+      <a href="/edit/{{_id}}">Edit</a>
+      <a href="/delete/{{_id}}">Delete</a>
+      
+      {{/each}}
+      
+    </ul>
+
+
+
+
+
+
+    <ul id="resultado">
+
+  </div>
+
+  </ul>
+ 
+
+</body>
+</html>
+</div>

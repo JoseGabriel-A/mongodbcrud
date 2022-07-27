@@ -1,0 +1,64 @@
+
+<div class="container">
+<body>
+  <div class="container mt-5">
+
+    <h1>Nodejs Mongodb CRUD with Auto-finding</h1>
+    <input type="text" id="formulario" />
+    <button class="btn btn-info mb-2" id="boton">Buscar</button>
+   
+  <ul id="resultado">
+
+  </div>
+  </ul>
+
+  <nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a href="/modify" class="navbar-brand">modify data</a>
+    </div>
+  </nav>
+  <script>
+    let productos = [];
+    let nombre;
+    let valor;
+
+
+    {{#each fruits }}
+    nombre = "{{{name}}}";
+    valor = "{{{value}}}"; 
+    productos.push({ nombre, valor })
+    {{/each}}
+
+
+
+
+        console.log(productos);
+        const filtrar = () => {
+          resultado.innerHTML = '';
+          const texto = formulario.value.toLowerCase()
+          for (let producto of productos) {
+            let nombre = producto.nombre;
+            if (nombre.indexOf(texto) !== -1) {
+              resultado.innerHTML += ` 
+            <li>${producto.nombre} - Valor ${producto.valor}</li>
+            `
+            }
+          }
+          if (resultado.innerHTML === '') {
+            resultado.innerHTML += ` 
+            <li> Producto no encontrado.....</li>
+            `
+          }
+        }
+        const formulario = document.querySelector('#formulario');
+        const boton = document.querySelector('#boton');
+        const resultado = document.querySelector('#resultado');
+        boton.addEventListener('click', filtrar);
+        formulario.addEventListener('keyup', filtrar);
+        filtrar();
+  </script>
+
+</body>
+</div>
+
+</html>
