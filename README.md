@@ -1,36 +1,80 @@
-# mongodbcrud
+# Mongodbcrud
 
-## Mongo db mounted with docker-compose and auto filter function
+Mongodb crud with NodeJs and Express with automatic filter function.
 
+## Table of contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [How to use it](#how-to-use-it)
+- [Explanation of project](#explanation-of-project)
+
+## Prerequisites
+
+- Nodejs.
+- Js.
+- docker-compose.
 - I use ubuntu 20.04 with docker as sudo, if it's not your case, may be necessary put the word 'sudo' before commands.
-- For the same reason, may be neessary some others lighty changes to use babel in windows.
+- For the same reason, may be neessary some others lighty changes to use babel module in windows.
 - in the project you can find a .env_example file, please rename it as .env file in your project, here you can find:
   MONGODB_URI=mongodb://localhost/your_db_name
   PORT=3000
-  these environment variables are use for security, you can change the name "your_db_name" by your prefer name and the same for the port number ( 3000 by default)
+  These environment variables are use for security, you can change the name "your_db_name" by your prefer name and the same for the port number ( 3000 by default)
+
+## Installation
+
+Clone this repository
+
+```bash
+git clone https://github.com/JoseGabriel-A/mongodbcrud.git
+```
 
 ### Mongo db container build:
 
 To run this project we need :
-1- First build a docker image with mongo db, we made this with the command inside the folder mongodb_server: `docker-compose up -d`
+1- First build a docker image with mongo db, we made this with the command inside the folder mongodb_server:
+
+```bash
+docker-compose up -d
+```
+
 ![docker-build.png](/images/docker-build.png "docker-build.png")<br>
-2- With this command, docker compose will build the image and run the container with mongo db .We can check that container is runing with command: `docker ps`
+2- With this command, docker compose will build the image and run the container with mongo db .We can check that container is runing with command:
+
+```bash
+docker ps
+```
+
 ![docker-container.png](/images/docker-container.png "docker-container.png")<br>
-3- Afther that we can check that mongo is runing, with the command : `docker exec -it #container bash` we enter inside the container, and the put `mongo` to run mongodb:
+3- Afther that we can check that mongo is runing, with the command :
+
+```bash
+docker exec -it <containerid> bash
+```
+
+we enter inside the container, and the put `mongo` to run mongodb:<br>
 ![mongo.png](/images/mongo.png "mongo.png")<br>
-4-finally with the command `show dbs` we obtain:
+4-finally with the command `show dbs` we obtain:<br>
 ![showdatabases.png](/images/showdatabases.png "mongo.png")<br>
 
-### Runing the App:
+### Install the modules:
 
-- We need install the modules to this project, with the command: `npm install`, we install all the modules detailed in _package.json_ file
-  1- Run the command: `npm run dev` nodejs up the server on the local host : _http://localhost:3000/_ (by default)
-  ![local-host-initial.png](/images/local-host-initial.png "local-host-initial.png")<br>
-  we don't have any item in the database, therefore, the next step is load data.<br> 2- click the button "modify data", and then put a item and value, you can put anything, in my case, I put fruits:
-  ![add_data.png](/images/add_data.png "add_data.png").
-  You can add some items, and after each you will be redirect to the main page of the project.
-  3- with some items loaded in the db, now you can find and "filter" automatically items in base a the letters that you input (it's not necessary click the button "buscar"), and you can edit or delete items too.
-  To construct this project I used Nodejs and Express as framework, the main files are:
+- We need install the modules to this project, with the command: `npm install`, we install all the modules detailed in _package.json_ file.
+
+## how-to-use-it
+
+1- Run the command: `npm run dev` nodejs up the server on the local host : _http://localhost:3000/_ (by default)
+![local-host-initial.png](/images/local-host-initial.png "local-host-initial.png")<br>
+we don't have any item in the database, therefore, the next step is load data.<br>
+2- click the button "modify data", and then put a item and value, you can put anything, in my case, I put fruits:<br>
+![add_data.png](/images/add_data.png "add_data.png")<br>
+You can add some items, and after each you will be redirect to the main page of the project.<br>
+3- with some items loaded in the db, now you can find and "filter" automatically items in base a the letters that you input (it's not necessary click the button "buscar"), and you can edit or delete items too.<br>
+
+## explanation-of-project
+
+To construct this project I used Nodejs and Express as framework, the main files are:
+
 - Mongodb_server, here you can find the docker-compose.yml (run docker-compose commands inside this folder)
 - In src folder we have controllers ( tasks to will be realize in each routes), models(data models to will be used in mongodb), routes(routing), and views(templates managed by handlebars).
 - In _app.js_ file we import differents modules and other files too( like express, handlebars, morgan or routing file) and configure handlebars.
